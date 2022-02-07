@@ -30,8 +30,13 @@ logger.setLevel(gameConfig.logLevel);
 const config: Phaser.Types.Core.GameConfig = {
     type: Phaser.AUTO,
     parent: 'container',     // parent id - '' means  no container
-    width: gameConfig.size.x,
-    height: gameConfig.size.y
+    scale: {
+        mode: Phaser.Scale.RESIZE,
+        width: '100%',
+        height: '100%',
+        autoRound: true
+    },
+    pixelArt: true
 };
 
 /**

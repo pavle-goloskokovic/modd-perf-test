@@ -12,10 +12,7 @@ export default class Preloader extends Phaser.Scene {
     {
         logger.info('Preloader enter');
 
-        // TODO preload assets
-
-        this.load.image('bg', require('../../assets/images/bg.jpg'));
-        this.load.image('logo', require('../../assets/images/logo.png'));
+        this.load.image('tilesheet_complete', require('../../assets/images/1524311504249_tilesheet.png'));
     }
 
     create (): void

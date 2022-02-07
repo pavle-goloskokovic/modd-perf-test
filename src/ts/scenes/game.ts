@@ -7,20 +7,55 @@ import * as logger from 'js-logger';
  */
 export default class Game extends Phaser.Scene {
 
+    controls: Phaser.Cameras.Controls.FixedKeyControl;
+
     create (): void
     {
         logger.info('Game enter');
 
-        this.add.image(
-        <number>this.sys.game.config.width/2,
-        <number>this.sys.game.config.height/2,
-        'bg'
-        );
+        // this.cameras.main.setZoom(3/11);
 
-        this.add.sprite(
-        <number>this.sys.game.config.width/2,
-        <number>this.sys.game.config.height/2,
-        'logo'
-        );
+        const map = this.make.tilemap({
+            width: 1000,
+            height: 1000,
+            tileWidth: 64,
+            tileHeight: 64
+        });
+
+        const tiles = map.addTilesetImage('tilesheet_complete', null, 64,64);
+
+        const indexes: number[] = [];
+        for (let i = -1; i < 540; i++) { indexes.push(i); }
+        ['floor', 'floor2', 'debris', 'walls', 'trees'].forEach((layerName) =>
+        {
+            const layer = map.createBlankLayer(layerName, tiles);
+            layer.randomize(0, 0, map.width, map.height, indexes);
+
+            console.log(layer);
+            console.log(layer.layer);
+        });
+
+        const cursors = this.input.keyboard.createCursorKeys();
+        this.controls = new Phaser.Cameras.Controls.FixedKeyControl({
+            camera: this.cameras.main,
+            left: cursors.left,
+            right: cursors.right,
+            up: cursors.up,
+            down: cursors.down,
+            speed: 0.5
+        });
+
+        const help = this.add.text(16, 16, 'Arrows to scroll', {
+            fontSize: '18px',
+            padding: { x: 10, y: 5 },
+            backgroundColor: '#000000'
+        });
+        help.setFill('#ffffff');
+        help.setScrollFactor(0);
+    }
+
+    update (time: number, delta: number): void
+    {
+        this.controls.update(delta);
     }
 }
