@@ -35,6 +35,18 @@ export default class Game extends Phaser.Scene {
             console.log(layer.layer);
         });
 
+        const items = ['blood','rocks','tree','log','wall','meat','helmet','fur'];
+        for (let i = 0; i < 10000; i++)
+        {
+            const item = this.add.image(
+                Math.floor(Math.random() * 1000) * 64,
+                Math.floor(Math.random() * 1000) * 64,
+                items[Math.floor(Math.random() * items.length)]
+            );
+            item.setOrigin(0.5);
+            item.setScale(Math.min(64/item.width, 64/item.height));
+        }
+
         const cursors = this.input.keyboard.createCursorKeys();
         this.controls = new Phaser.Cameras.Controls.FixedKeyControl({
             camera: this.cameras.main,
