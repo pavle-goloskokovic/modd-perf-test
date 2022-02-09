@@ -105,6 +105,17 @@ export default <webpack.Configuration>{
                     loader: 'expose-loader',
                     options: 'Phaser'
                 }]
+            },
+            {
+                test: /\\assets\\.+\.xml$/,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        name: `[path][name]${ prod ? '.[contenthash]' : '' }.[ext]`,
+                        context: 'src',
+                        esModule: false
+                    }
+                }]
             }
         ]
     },

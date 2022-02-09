@@ -27,6 +27,11 @@ export default class Preloader extends Phaser.Scene {
         this.load.image('pig', require('../../assets/images/1589646609302_pig.png'));
         this.load.image('human', require('../../assets/images/1589924067451_1588203181380_Man_Human_Person.png'));
         this.load.image('axe', require('../../assets/images/1588116115083_axe.png'));
+
+        this.load.bitmapFont('font',
+            require('../../assets/images/myBitmapfont.png'),
+            require('../../assets/fonts/font.xml')
+        );
     }
 
     create (): void
