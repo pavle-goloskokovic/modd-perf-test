@@ -1,9 +1,10 @@
 import SteeringEntity from './SteeringEntity';
+import PhaserFloatingText from './PhaserFloatingText';
 
 export default class Player extends SteeringEntity {
 
-    // label: Phaser.GameObjects.Text;
-    label: Phaser.GameObjects.BitmapText;
+    label: Phaser.GameObjects.Text;
+    // label: Phaser.GameObjects.BitmapText;
 
     constructor (scene: Phaser.Scene, x: number, y: number)
     {
@@ -32,10 +33,7 @@ export default class Player extends SteeringEntity {
         });
         this.label.setOrigin(0.5);*/
 
-        this.label = scene.add.bitmapText(x, y, 'font', `player${
-            10000 + Math.round(Math.random()*90000)
-        }`, 28, Phaser.GameObjects.BitmapText.ALIGN_CENTER);
-        this.label.setOrigin(0.5);
+        this.label = new PhaserFloatingText(scene, { x, y });
     }
 
     update (time: number, delta: number): void

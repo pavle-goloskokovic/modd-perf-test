@@ -28,7 +28,7 @@ logger.setLevel(gameConfig.logLevel);
  * @type {Phaser.Types.Core.GameConfig}
  */
 const config: Phaser.Types.Core.GameConfig = {
-    type: Phaser.AUTO,
+    type: Phaser.CANVAS,
     parent: 'container',     // parent id - '' means  no container
     scale: {
         mode: Phaser.Scale.RESIZE,
@@ -36,7 +36,14 @@ const config: Phaser.Types.Core.GameConfig = {
         height: '100%',
         autoRound: true
     },
-    pixelArt: true
+    // pixelArt: true,
+    /*render: {
+        antialias: false
+    },*/
+    // roundPixels: true,
+    /*fps: {
+        smoothStep: false
+    }*/
 };
 
 /**

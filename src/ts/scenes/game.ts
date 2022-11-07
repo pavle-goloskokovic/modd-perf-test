@@ -2,11 +2,13 @@ import * as logger from 'js-logger';
 import Pig from '../classes/Pig';
 import Bear from '../classes/Bear';
 import Player from '../classes/Player';
+import PhaserFloatingText from '../classes/PhaserFloatingText';
 
 const TILEMAP_SIZE = 200;
 const TILE_SIZE = 64;
 const STATIC_ENTITIES_SIZE = 15000;
 const ACTIVE_ENTITIES_SIZE = 100;
+const TEXTS_SIZE = 1000;
 
 /**
  * Game Phaser scene.
@@ -48,12 +50,7 @@ export default class Game extends Phaser.Scene {
             console.log(layer.layer);*/
       });
 
-      const items = ['blood', 'rocks', 'tree', 'log', 'wall', 'meat', 'helmet', 'fur'];
-      this.players.push(
-          new Player(this, Math.floor(Math.random() * TILEMAP_SIZE) * TILE_SIZE, Math.floor(Math.random() * TILEMAP_SIZE) * TILE_SIZE)
-      );
-      this.cameras.main.startFollow(this.players[0].entity);
-
+      /*const items = ['blood', 'rocks', 'tree', 'log', 'wall', 'meat', 'helmet', 'fur'];
       for (let i = 0; i < STATIC_ENTITIES_SIZE; i++)
       {
           const item = this.add.image(
@@ -74,7 +71,20 @@ export default class Game extends Phaser.Scene {
                   Math.floor(Math.random() * TILEMAP_SIZE) * TILE_SIZE
               )
           );
+      }*/
+
+      for (let i = 0; i < TEXTS_SIZE; i++)
+      {
+          new PhaserFloatingText(this,{
+              x: Math.floor(Math.random() * TILEMAP_SIZE) * TILE_SIZE,
+              y: Math.floor(Math.random() * TILEMAP_SIZE) * TILE_SIZE
+          });
       }
+
+      this.players.push(
+          new Player(this, Math.floor(Math.random() * TILEMAP_SIZE) * TILE_SIZE, Math.floor(Math.random() * TILEMAP_SIZE) * TILE_SIZE)
+      );
+      this.cameras.main.startFollow(this.players[0].entity);
 
       /* this.players.push(
                 new Player(
