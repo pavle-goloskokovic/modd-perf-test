@@ -1,5 +1,5 @@
 import SteeringEntity from './SteeringEntity';
-import PhaserFloatingText from './PhaserFloatingText';
+import TestText from './TestText';
 
 export default class Player extends SteeringEntity {
 
@@ -33,14 +33,14 @@ export default class Player extends SteeringEntity {
         });
         this.label.setOrigin(0.5);*/
 
-        this.label = new PhaserFloatingText(scene, { x, y });
+        /*this.label =*/ new TestText(scene, { x, y });
     }
 
     update (time: number, delta: number): void
     {
-        super.update(time, delta);
+        /*super.update(time, delta);
 
         this.label.x = this.entity.x;
-        this.label.y = this.entity.y - 50;
+        this.label.y = this.entity.y - 50;*/
     }
 }
