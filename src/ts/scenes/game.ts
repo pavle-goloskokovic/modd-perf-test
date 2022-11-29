@@ -2,13 +2,13 @@ import * as logger from 'js-logger';
 import Pig from '../classes/Pig';
 import Bear from '../classes/Bear';
 import Player from '../classes/Player';
-import PhaserFloatingText from '../classes/PhaserFloatingText';
+import TestText from '../classes/TestText';
 
 const TILEMAP_SIZE = 200;
 const TILE_SIZE = 64;
 const STATIC_ENTITIES_SIZE = 15000;
 const ACTIVE_ENTITIES_SIZE = 100;
-const TEXTS_SIZE = 1000;
+const TEXTS_SIZE = 4/*1000*/;
 
 /**
  * Game Phaser scene.
@@ -25,9 +25,9 @@ export default class Game extends Phaser.Scene {
   {
       logger.info('Game enter');
 
-      this.cameras.main.setZoom(5 / 11);
+      this.cameras.main.setZoom(5/* / 11*/);
 
-      const map = this.make.tilemap({
+      /*const map = this.make.tilemap({
           width: TILEMAP_SIZE,
           height: TILEMAP_SIZE,
           tileWidth: TILE_SIZE,
@@ -46,9 +46,9 @@ export default class Game extends Phaser.Scene {
           const layer = map.createBlankLayer(layerName, tiles);
           layer.randomize(0, 0, map.width, map.height, indexes);
 
-      /*console.log(layer);
-            console.log(layer.layer);*/
-      });
+      /!*console.log(layer);
+            console.log(layer.layer);*!/
+      });*/
 
       /*const items = ['blood', 'rocks', 'tree', 'log', 'wall', 'meat', 'helmet', 'fur'];
       for (let i = 0; i < STATIC_ENTITIES_SIZE; i++)
@@ -73,18 +73,27 @@ export default class Game extends Phaser.Scene {
           );
       }*/
 
+      const player = new Player(this,
+          Math.floor(Math.random() * TILEMAP_SIZE) * TILE_SIZE,
+          Math.floor(Math.random() * TILEMAP_SIZE) * TILE_SIZE
+      );
+
+      this.players.push(player);
+      this.cameras.main.startFollow(player.entity);
+
       for (let i = 0; i < TEXTS_SIZE; i++)
       {
-          new PhaserFloatingText(this,{
-              x: Math.floor(Math.random() * TILEMAP_SIZE) * TILE_SIZE,
-              y: Math.floor(Math.random() * TILEMAP_SIZE) * TILE_SIZE
+          new TestText(this,{
+              x: player.entity.x +
+                  Math.round((Math.random()-0.5) * this.scale.width
+                      / this.cameras.main.zoom),
+              y: player.entity.y +
+                  Math.round((Math.random()-0.5) * this.scale.height
+                      / this.cameras.main.zoom)
           });
       }
 
-      this.players.push(
-          new Player(this, Math.floor(Math.random() * TILEMAP_SIZE) * TILE_SIZE, Math.floor(Math.random() * TILEMAP_SIZE) * TILE_SIZE)
-      );
-      this.cameras.main.startFollow(this.players[0].entity);
+      console.log(this.cache.bitmapFont.entries);
 
       /* this.players.push(
                 new Player(

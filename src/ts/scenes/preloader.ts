@@ -1,4 +1,5 @@
 import * as logger from 'js-logger';
+import BitmapFontManager from '../classes/BitmapFontManager';
 
 /**
  * Preloader Phaser scene.
@@ -32,10 +33,24 @@ export default class Preloader extends Phaser.Scene {
             require('../../assets/images/myBitmapfont.png'),
             require('../../assets/fonts/font.xml')
         );
+
+        /*this.load.bitmapFont('Verdana',
+            require('../../assets/images/Verdana_0.png'),
+            require('../../assets/fonts/Verdana.xml')
+        );*/
+
+        /*this.load.bitmapFont('Verdana',
+            require('../../assets/images/Verdana_0.png'),
+            require('../../assets/fonts/Verdana-outline.xml')
+        );*/
+
+        BitmapFontManager.preload(this);
     }
 
     create (): void
     {
+        BitmapFontManager.create(this);
+
         logger.info('Preloader leave');
 
         this.scene.start('game');
