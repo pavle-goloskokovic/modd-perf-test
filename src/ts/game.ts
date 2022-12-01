@@ -31,12 +31,22 @@ const config: Phaser.Types.Core.GameConfig = {
     type: Phaser.AUTO,
     parent: 'container',     // parent id - '' means  no container
     scale: {
-        mode: Phaser.Scale.RESIZE,
+        mode: Phaser.Scale.ScaleModes.RESIZE,
         width: '100%',
         height: '100%',
-        autoRound: true
+        autoRound: true,
+        resizeInterval: 100
     },
-    pixelArt: true
+    render: {
+        pixelArt: false,
+        transparent: false
+    },
+    fps: {
+        smoothStep: false
+    },
+    loader: {
+        crossOrigin: 'anonymous'
+    }
 };
 
 /**
