@@ -18,7 +18,7 @@ export default merge(common, <webpack.Configuration>{
                 preset: ['default', { discardComments: { removeAll: true } }],
             }
         }),
-        new ImageminPlugin({ // Make sure that the plugin is after any plugins that add images
+        /*new ImageminPlugin({ // Make sure that the plugin is after any plugins that add images
             test: /\.(jpe?g|png|gif|svg)$/i,
             optipng: {
                 optimizationLevel: 7,
@@ -30,6 +30,6 @@ export default merge(common, <webpack.Configuration>{
             jpegtran: {
                 progressive: true
             }
-        })
+        })*/
     ]
 });
