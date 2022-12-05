@@ -3,12 +3,15 @@ import Pig from '../classes/Pig';
 import Bear from '../classes/Bear';
 import Player from '../classes/Player';
 import TestText from '../classes/TestText';
+import AttributeBar from '../classes/AttributeBar';
+import TextureAttributeBar from '../classes/TextureAttributeBar';
 
 const TILEMAP_SIZE = 200;
 const TILE_SIZE = 64;
 const STATIC_ENTITIES_SIZE = 15000;
 const ACTIVE_ENTITIES_SIZE = 100;
 const TEXTS_SIZE = 4/*1000*/;
+const ATTRIBUTE_BARS_SIZE = 50;
 
 /**
  * Game Phaser scene.
@@ -25,7 +28,7 @@ export default class Game extends Phaser.Scene {
   {
       logger.info('Game enter');
 
-      this.cameras.main.setZoom(5/* / 11*/);
+      this.cameras.main.setZoom(7 / 11);
 
       /*const map = this.make.tilemap({
           width: TILEMAP_SIZE,
@@ -81,7 +84,7 @@ export default class Game extends Phaser.Scene {
       this.players.push(player);
       this.cameras.main.startFollow(player.entity);
 
-      for (let i = 0; i < TEXTS_SIZE; i++)
+      /*for (let i = 0; i < TEXTS_SIZE; i++)
       {
           new TestText(this,{
               x: player.entity.x +
@@ -91,9 +94,24 @@ export default class Game extends Phaser.Scene {
                   Math.round((Math.random()-0.5) * this.scale.height
                       / this.cameras.main.zoom)
           });
-      }
+      }*/
 
-      console.log(this.cache.bitmapFont.entries);
+      for (let i = 0; i < ATTRIBUTE_BARS_SIZE; i++)
+      {
+          new TextureAttributeBar(this,
+              player.entity.x +
+                  Math.round((Math.random()-0.5) * this.scale.width
+                      / this.cameras.main.zoom),
+              player.entity.y +
+                  Math.round((Math.random()-0.5) * this.scale.height
+                      / this.cameras.main.zoom),
+              {
+                  color: '#FFFFFF',
+                  value: Math.random()*100,
+                  max: 100
+              }
+          );
+      }
 
       /* this.players.push(
                 new Player(

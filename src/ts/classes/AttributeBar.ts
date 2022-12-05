@@ -1,4 +1,4 @@
-interface AttributeData {
+export interface AttributeData {
     color: string;
     max: number;
     value: number;
@@ -8,7 +8,7 @@ export default class AttributeBar extends Phaser.GameObjects.Container {
 
     private readonly bar: Phaser.GameObjects.Graphics;
 
-    private constructor (scene: Phaser.Scene, x: number, y: number, data: AttributeData)
+    constructor (scene: Phaser.Scene, x: number, y: number, data: AttributeData)
     {
         super(scene, x, y);
 
@@ -16,6 +16,8 @@ export default class AttributeBar extends Phaser.GameObjects.Container {
         this.add(bar);
 
         this.render(data);
+
+        scene.add.existing(this);
     }
 
     render ({ color, value, max }: AttributeData): void

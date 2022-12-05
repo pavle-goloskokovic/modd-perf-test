@@ -45,6 +45,13 @@ export default class Preloader extends Phaser.Scene {
         );*/
 
         BitmapFontManager.preload(this);
+
+        this.load.image('stroke',
+            require('../../assets/images/attribute-bar/stroke.png'));
+        this.load.image('fill',
+            require('../../assets/images/attribute-bar/fill.png'));
+        this.load.image('fill-side',
+            require('../../assets/images/attribute-bar/fill-side.png'));
     }
 
     create (): void
